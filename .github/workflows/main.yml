@@ -15,7 +15,7 @@ jobs:
     - name: Checkout submodules
     - uses: actions/checkout@v1
       with:
-          args: git submodule update --init --recursive
+          submodules: true
     - uses: actions/checkout@master
     - uses: actions/setup-node@master
       with:
