@@ -19,7 +19,6 @@ jobs:
       with:
         node-version: '12'
     - run: ./update-origin.sh
-    - run: ./build.sh
     - uses: w9jds/firebase-action@master
       with:
         args: deploy --only hosting
