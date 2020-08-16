@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
-    - uses: actions/setup-node@master
+    - uses: actions/setup-node@v2-Beta
       with:
         node-version: '12.8.3'
     - run: ./build.sh
