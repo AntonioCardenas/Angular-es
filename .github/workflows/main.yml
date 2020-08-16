@@ -3,8 +3,8 @@ name: CI
 on:
   push:
     branches:
-    - master
-    - release/*
+    - Principal
+    - master/*
 
 jobs:
   firebase-deploy:
@@ -12,12 +12,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
-    - uses: actions/setup-node@v2-Beta
+    - name: Checkout submodules
+      uses: textbook/git-checkout-submodule-action@master
       with:
-        node-version: '12.8.3'
+          args: git submodule update --init --recursive
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
+      with:
+        node-version: '12'
     - run: ./build.sh
-    - run: npm run build:prod
     - uses: w9jds/firebase-action@master
       with:
         args: deploy --only hosting
