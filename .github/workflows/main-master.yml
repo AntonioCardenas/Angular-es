@@ -4,18 +4,21 @@ on:
   push:
     branches:
     - Principal
-    - release/*
+    - master/*
 
 jobs:
   firebase-deploy:
-
     runs-on: ubuntu-latest
-
     steps:
+    - name: Checkout submodules
+    - uses: actions/checkout@v1
+      with:
+          submodules: true
     - uses: actions/checkout@master
     - uses: actions/setup-node@master
       with:
         node-version: '12'
+    - run: ./update-origin.sh
     - run: ./build.sh
     - uses: w9jds/firebase-action@master
       with:
