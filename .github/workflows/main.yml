@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: Checkout submodules
-      uses: textbook/git-checkout-submodule-action@master
+    - uses: actions/checkout@v1
       with:
           args: git submodule update --init --recursive
     - uses: actions/checkout@master
