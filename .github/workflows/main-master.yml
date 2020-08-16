@@ -4,7 +4,7 @@ on:
   push:
     branches:
     - Principal
-    - master/*
+    - release/*
 
 jobs:
   firebase-deploy:
@@ -12,15 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@Principal
-    - uses: actions/setup-node@Principal
+    - uses: actions/checkout@master
+    - uses: actions/setup-node@master
       with:
         node-version: '12.8.3'
     - run: ./build.sh
-    - run: npm run build:prod
-    - uses: w9jds/firebase-action@Principal
+    - uses: w9jds/firebase-action@master
       with:
         args: deploy --only hosting
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
